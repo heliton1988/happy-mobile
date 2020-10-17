@@ -51,7 +51,7 @@ const Routes: React.FC = () => (
         component={SelectPosition}
         options={{
           headerShown: true,
-          header: () => <Header title="Adicione um orfanato" />,
+          header: () => <Header title="Selecione um ponto no mapa" />,
         }}
       />
 
@@ -60,7 +60,7 @@ const Routes: React.FC = () => (
         component={OrphanageData}
         options={{
           headerShown: true,
-          header: () => <Header title="Adicione um orfanato" />,
+          header: () => <Header title="Informe os dados" />,
           title: 'Adicione um orfanato',
         }}
       />

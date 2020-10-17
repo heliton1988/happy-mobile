@@ -39,6 +39,7 @@
     "react/jsx-one-expression-per-line": "off",
     "object-curly-newline": "off",
     "no-use-before-define": "off",
+    "arrow-parens": "off",
     "camelcase": "off",
     "import/extensions": [
       "error",
