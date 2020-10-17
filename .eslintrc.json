@@ -36,6 +36,8 @@
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "object-curly-newline": "off",
     "no-use-before-define": "off",
     "camelcase": "off",
     "import/extensions": [
