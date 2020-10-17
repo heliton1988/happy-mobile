@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import {
+ View, Text, StyleSheet, Dimensions
+} from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
@@ -68,6 +70,7 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     bottom: 40,
+    elevation: 3,
   },
 
   buttonText: {
