@@ -21,9 +21,18 @@
   <a href="#pagefacingup-licença">Licença</a>
 </p>
 
+<p>
+  <img src="./.github/banner.png">
+</p>
+
+<br />
+
+Repositório com a versão web:
+[Click em mim](https://github.com/heliton1988/happy) :rewind:
+
 ## :memo: Sobre
 
-Happy é uma aplicação que estou desenvolvendo no evento NLW(Next Level week) oferecido pela Rocketseat. Ao final do treinamente terei desenvolvido uma aplicação completa que envolve front-end web, mobile & back-end.
+Happy é uma aplicação que desenvolvi os workshops da NLW(Next Level week) oferecido pela Rocketseat. Ao final do treinamente terei desenvolvido uma aplicação completa que envolve front-end web, mobile & back-end.
 
 O nome happy não foi escolhido por acaso, pois outubro é o mês das crianças, então em homenagem a isso essa aplicação tem uma pegada social com foco nos pequeninos.
 
@@ -33,6 +42,7 @@ O nome happy não foi escolhido por acaso, pois outubro é o mês das crianças,
 - [React Native](https://reactnative.dev/)
 - [React Nativagion](https://reactnavigation.org/docs/hello-react-navigation/)
 - [React Native Maps](https://docs.expo.io/versions/latest/sdk/map-view/)
+- [Image-picker](https://docs.expo.io/tutorial/image-picker/#installing-expo-image-picker)
 - [Axios](https://github.com/axios/axios)
 - [ESlint](https://eslint.org/)
 - [EditorConfig](https://editorconfig.org/)
