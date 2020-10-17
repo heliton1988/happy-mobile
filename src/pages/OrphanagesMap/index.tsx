@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Dimensions } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
+import GradientButton from '../../components/GradientButon';
 
 import api from '../../services/api';
 
@@ -21,16 +22,17 @@ const OrphanagesMap: React.FC = () => {
 
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     async function loadOrphanages() {
       const response = await api.get('orphanages');
 
-      console.log(response.data);
-      setOrphanages(response.data);
+      const orphanagesData = response.data;
+
+      setOrphanages(orphanagesData);
     }
 
     loadOrphanages();
-  }, []);
+  });
 
   function handleNavigateToDetails(id: number) {
     navigation.navigate('OrphanageDetails', { id });
@@ -82,12 +84,14 @@ const OrphanagesMap: React.FC = () => {
           {orphanages.length} orfanatos encontrados
         </Text>
 
-        <RectButton
-          style={styles.createOrphanageButton}
-          onPress={handleNavigateToData}
-        >
-          <Feather name="plus" size={20} color="#fff" />
-        </RectButton>
+        <GradientButton>
+          <RectButton
+            style={styles.createOrphanageButton}
+            onPress={handleNavigateToData}
+          >
+            <Feather name="plus" size={20} color="#fff" />
+          </RectButton>
+        </GradientButton>
       </View>
     </View>
   );
@@ -147,7 +151,7 @@ const styles = StyleSheet.create({
   createOrphanageButton: {
     width: 56,
     height: 56,
-    backgroundColor: '#15c3d6',
+
     borderRadius: 20,
 
     alignItems: 'center',
@@ -160,3 +164,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+// 15c3d6
