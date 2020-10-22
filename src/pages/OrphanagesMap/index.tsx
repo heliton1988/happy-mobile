@@ -4,7 +4,7 @@ import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
-import GradientButton from '../../components/GradientButon';
+import GradientButton from '../../components/GradientButton';
 
 import api from '../../services/api';
 
@@ -84,7 +84,11 @@ const OrphanagesMap: React.FC = () => {
           {orphanages.length} orfanatos encontrados
         </Text>
 
-        <GradientButton>
+        <GradientButton
+          borderRadius={20}
+          alignItems="center"
+          justifyContent="center"
+        >
           <RectButton
             style={styles.createOrphanageButton}
             onPress={handleNavigateToData}
@@ -149,13 +153,8 @@ const styles = StyleSheet.create({
   },
 
   createOrphanageButton: {
-    width: 56,
-    height: 56,
-
+    padding: 19,
     borderRadius: 20,
-
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 
   loadingText: {

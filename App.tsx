@@ -26,3 +26,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+// "react-native-web": "~0.13.7",
