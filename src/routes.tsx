@@ -3,6 +3,8 @@ import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import Onborading from './components/Onboard';
+
 import OrphanagesMap from './pages/OrphanagesMap';
 import OrphanageDetails from './pages/OrphanageDetails';
 
@@ -15,26 +17,17 @@ const Stack = createStackNavigator();
 
 const Routes: React.FC = () => (
   <NavigationContainer>
-    <StatusBar backgroundColor="#FF5A79" translucent />
+    <StatusBar backgroundColor="#FF5A79" barStyle="light-content" />
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-
         cardStyle: {
           backgroundColor: '#f2f3f5',
         },
-
-        // headerTintColor: '#F9FAFC',
-        // headerStyle: {
-        //   backgroundColor: '#FF5A79',
-        // },
-        // headerTitleAlign: 'center',
-        // headerTitleStyle: {
-        //   fontFamily: 'Nunito_600SemiBold',
-        //   fontSize: 15,
-        // },
       }}
     >
+      <Stack.Screen name="Onboarding" component={Onborading} />
+
       <Stack.Screen name="OrphanagesMap" component={OrphanagesMap} />
 
       <Stack.Screen
