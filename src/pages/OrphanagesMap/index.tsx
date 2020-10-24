@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Dimensions, StatusBar } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, Callout } from 'react-native-maps';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
-import GradientButton from '../../components/GradientButton';
+import {
+  requestPermissionsAsync,
+  getCurrentPositionAsync,
+  LocationAccuracy,
+} from 'expo-location';
 
 import api from '../../services/api';
 
+import GradientButton from '../../components/GradientButton';
 import mapMarkerImg from '../../assets/map-marker.png';
+import positionMap from '../../assets/position.png';
+
+import AnimatedLoading from '../../components/AnimatedLoading';
+
+interface Position {
+  latitude: number;
+  longitude: number;
+}
 
 interface Orphanage {
   id: number;
@@ -18,10 +31,39 @@ interface Orphanage {
 }
 
 const OrphanagesMap: React.FC = () => {
+  const [location, setLocation] = useState<Position | null>(null);
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation();
 
+  // Get initial position of user
+  useEffect(() => {
+    async function loadLocation() {
+      const { status } = await requestPermissionsAsync();
+
+      if (status === 'granted') {
+        const { coords } = await getCurrentPositionAsync({
+          accuracy: LocationAccuracy.BestForNavigation,
+        });
+
+        const position = {
+          latitude: coords.latitude,
+          longitude: coords.longitude,
+        };
+
+        setLocation(position);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 2000);
+      }
+    }
+
+    loadLocation();
+  }, []);
+
+  // Load orphanages positions
   useFocusEffect(() => {
     async function loadOrphanages() {
       const response = await api.get('orphanages');
@@ -42,62 +84,74 @@ const OrphanagesMap: React.FC = () => {
     navigation.navigate('SelectPosition');
   }
 
-  return (
-    <View style={styles.container}>
-      <MapView
-        style={styles.mapStyle}
-        provider={PROVIDER_GOOGLE}
-        initialRegion={{
-          latitude: -22.701093,
-          longitude: -43.531849,
-          latitudeDelta: 0.008,
-          longitudeDelta: 0.008,
-        }}
-      >
-        {orphanages.map((orphanage: Orphanage) => (
-          <Marker
-            key={orphanage.id}
-            icon={mapMarkerImg}
-            calloutAnchor={{
-              x: 2.7,
-              y: 0.8,
-            }}
-            coordinate={{
-              latitude: orphanage.latitude,
-              longitude: orphanage.longitude,
-            }}
-          >
-            <Callout
-              tooltip
-              onPress={() => handleNavigateToDetails(orphanage.id)}
-            >
-              <View style={styles.calloutContainer}>
-                <Text style={styles.calloutText}>{orphanage.name}</Text>
-              </View>
-            </Callout>
-          </Marker>
-        ))}
-      </MapView>
-
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          {orphanages.length} orfanatos encontrados
-        </Text>
-
-        <GradientButton
-          borderRadius={20}
-          alignItems="center"
-          justifyContent="center"
+  return loading ? (
+    <AnimatedLoading />
+  ) : (
+    <>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.container}>
+        <MapView
+          style={styles.mapStyle}
+          provider={PROVIDER_GOOGLE}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.008,
+            longitudeDelta: 0.008,
+          }}
         >
-          <RectButton
-            style={styles.createOrphanageButton}
-            onPress={handleNavigateToData}
+          <Marker
+            icon={positionMap}
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+          />
+          {orphanages.map((orphanage: Orphanage) => (
+            <Marker
+              key={orphanage.id}
+              icon={mapMarkerImg}
+              calloutAnchor={{
+                x: 2.7,
+                y: 0.8,
+              }}
+              coordinate={{
+                latitude: orphanage.latitude,
+                longitude: orphanage.longitude,
+              }}
+            >
+              <Callout
+                tooltip
+                onPress={() => handleNavigateToDetails(orphanage.id)}
+              >
+                <View style={styles.calloutContainer}>
+                  <Text style={styles.calloutText}>{orphanage.name}</Text>
+                </View>
+              </Callout>
+            </Marker>
+          ))}
+        </MapView>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            {orphanages.length} orfanatos encontrados
+          </Text>
+
+          <GradientButton
+            borderRadius={20}
+            alignItems="center"
+            justifyContent="center"
           >
-            <Feather name="plus" size={20} color="#fff" />
-          </RectButton>
-        </GradientButton>
+            <RectButton
+              style={styles.createOrphanageButton}
+              onPress={handleNavigateToData}
+            >
+              <Feather name="plus" size={20} color="#fff" />
+            </RectButton>
+          </GradientButton>
+        </View>
       </View>
-    </View>
+    </>
   );
 };
 

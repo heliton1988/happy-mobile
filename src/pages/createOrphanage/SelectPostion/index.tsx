@@ -1,74 +1,12 @@
-import React, { useState, useLayoutEffect } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  Dimensions,
-  StatusBar,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker, MapEvent } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 
 import mapMarkerImg from '../../../assets/map-marker.png';
-import cursorImg from '../../../assets/cursor.png';
 
 import TouchInstruction from '../../../components/TouchInstruction';
-
-// const Cursor: React.FC = () => {
-//   const navigation = useNavigation();
-//   const [Index, setIndex] = useState(15);
-
-//   useLayoutEffect(() => {
-//     navigation.setOptions({
-//       headerShown: false,
-//     });
-//   }, [navigation]);
-
-//   return (
-//     <>
-//       <StatusBar translucent backgroundColor="transparent" />
-//       <View
-//         onTouchEndCapture={evt => {
-//           setIndex(0);
-//           return true;
-//         }}
-//         // onMoveShouldSetResponder={evt => {
-//         //   setIndex(0);
-//         //   return true;
-//         // }}
-//         style={{
-//           flex: 1,
-//           width: Dimensions.get('window').width,
-//           height: Dimensions.get('screen').height,
-//           position: 'absolute',
-//           alignItems: 'center',
-//           justifyContent: 'center',
-//           backgroundColor: 'rgba(21, 182, 214, 0.7)',
-//           zIndex: Index,
-//         }}
-//       >
-//         <Image source={cursorImg} style={{ resizeMode: 'contain' }} />
-
-//         <View>
-//           <Text
-//             style={{
-//               color: '#fff',
-//               fontSize: 24,
-//               lineHeight: 34,
-//               fontFamily: 'Nunito_800ExtraBold',
-//               textAlign: 'center',
-//               width: 203,
-//             }}
-//           >
-//             Toque no mapa para adicionar um orfanato
-//           </Text>
-//         </View>
-//       </View>
-//     </>
-//   );
-// };
 
 interface Position {
   latitude: number;

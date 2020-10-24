@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   Dimensions,
+  StatusBar,
   Linking,
 } from 'react-native';
 import { useRoute } from '@react-navigation/native';
@@ -68,6 +69,7 @@ const OrphanageDetails: React.FC = () => {
 
   return (
     <>
+      <StatusBar barStyle="light-content" />
       <ScrollView style={styles.container}>
         <View style={styles.imageContainer}>
           <ScrollView horizontal pagingEnabled>

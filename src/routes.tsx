@@ -17,7 +17,11 @@ const Stack = createStackNavigator();
 
 const Routes: React.FC = () => (
   <NavigationContainer>
-    <StatusBar backgroundColor="#FF5A79" barStyle="light-content" />
+    <StatusBar
+      translucent
+      backgroundColor="transparent"
+      barStyle="light-content"
+    />
     <Stack.Navigator
       screenOptions={{
         headerShown: false,

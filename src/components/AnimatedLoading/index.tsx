@@ -9,7 +9,7 @@ import {
 
 import logo from '../../assets/logo.png';
 
-const Loading: React.FC = () => {
+const AnimatedLoading: React.FC = () => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const animatedImg = useRef(new Animated.Value(0)).current;
 
@@ -81,7 +81,7 @@ const Loading: React.FC = () => {
   );
 };
 
-export default Loading;
+export default AnimatedLoading;
 
 const styles = StyleSheet.create({
   container: {

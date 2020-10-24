@@ -8,7 +8,6 @@ import {
   StyleSheet,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { LinearGradient } from 'expo-linear-gradient';
 
 import cursorImg from '../../assets/cursor.png';
 
@@ -30,34 +29,32 @@ const Cursor: React.FC = () => {
 
   return (
     <>
-      <StatusBar translucent backgroundColor="transparent" />
-      <LinearGradient colors={['#15B6D6', '#15D6D6']}>
-        <View
-          onTouchEndCapture={() => {
-            handleLayoutEffect();
-            setIndex(0);
-            return true;
-          }}
-          // onMoveShouldSetResponder={evt => {
-          //   setIndex(0);
-          //   return true;
-          // }}
-          style={[
-            styles.container,
-            {
-              zIndex: Index,
-            },
-          ]}
-        >
-          <Image source={cursorImg} style={{ resizeMode: 'contain' }} />
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle="light-content"
+      />
+      <View
+        onTouchEndCapture={() => {
+          handleLayoutEffect();
+          setIndex(0);
+          return true;
+        }}
+        style={[
+          styles.container,
+          {
+            zIndex: Index,
+          },
+        ]}
+      >
+        <Image source={cursorImg} style={{ resizeMode: 'contain' }} />
 
-          <View>
-            <Text style={styles.title}>
-              Toque no mapa para adicionar um orfanato
-            </Text>
-          </View>
+        <View>
+          <Text style={styles.title}>
+            Toque no mapa para adicionar um orfanato
+          </Text>
         </View>
-      </LinearGradient>
+      </View>
     </>
   );
 };
