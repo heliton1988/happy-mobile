@@ -22,8 +22,13 @@
 </p>
 
 <p>
+  <img src="./.github/banner2.png">
+</p>
+
+<p>
   <img src="./.github/banner.png">
 </p>
+
 
 <br />
 
@@ -32,9 +37,30 @@ Repositório com a versão web:
 
 ## :memo: Sobre
 
-Happy é uma aplicação que desenvolvi os workshops da NLW(Next Level week) oferecido pela Rocketseat. Ao final do treinamente terei desenvolvido uma aplicação completa que envolve front-end web, mobile & back-end.
+O Happy é uma aplicação que desenvolvi durante os workshops da NLW(Next Level week), treinamento imersivo nas tecnologias React, React Native e seus ecossistema  oferecido pela Rocketseat, com duração de uma semana. ATé o final do treinamente desenvolvido uma aplicação completa que envolve front-end web, mobile & back-end.
 
 O nome happy não foi escolhido por acaso, pois outubro é o mês das crianças, então em homenagem a isso essa aplicação tem uma pegada social com foco nos pequeninos.
+
+
+## Milha extra
+
+No ultimo dia do evento citado acima, foi proposto uma série de desafio com a finalidade de levar as aplicações para o próximo nível, no mobile foram os seguintes:
+
+`todos que estão com um checked, já foram implementado por mim, os de mais estão em desenvolvimento...`
+
+- ✅ Splash Screen
+- ✅ Onboard do usuário
+- ✅ Real Time da localização do usuário
+- 🚫 Cadastro em múltiplas etapas
+- 🚫 Gerar APK
+
+Com o intúito de me desafiar fui além do proposto no treinamento e também nos desafios e resolvi adicionar as seguinte funcionalidades na aplicação:
+
+♠ Loading com animação<br />
+♠ Palheta de cores totalmente diferenciada<br />
+♠ Alteração em relação ao layout original<br />
+♠ Botões customizados com eveito gradiente<br />
+♠ StatusBar customizadas para determinadas telas<br />
 
 ## :wrench: Ferramentas utilizadas
 
